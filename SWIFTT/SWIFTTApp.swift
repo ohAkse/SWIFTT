@@ -11,7 +11,7 @@ import SwiftUI
 struct SWIFTTApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchView(searchViewModel: SearchViewModel(networkService: NetworkService()))
         }
     }
 }
