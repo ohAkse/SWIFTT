@@ -17,3 +17,5 @@ extension Then where Self: AnyObject {
 }
 
 extension NSObject: Then {}
+extension SearchDetailViewModel: Then {}
+extension URLComponents: Then {}

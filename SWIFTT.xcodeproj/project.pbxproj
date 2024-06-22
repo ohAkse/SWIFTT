@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F02B2CC2C26825000814448 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5F02B2CB2C26825000814448 /* SnapKit */; };
+		5F02B2CE2C26969800814448 /* BookSearchDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F02B2CD2C26969800814448 /* BookSearchDetailItem.swift */; };
+		5F02B2D02C269F6F00814448 /* SearchDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F02B2CF2C269F6F00814448 /* SearchDetailViewCell.swift */; };
+		5F02B2D22C26A5AD00814448 /* TableDetailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F02B2D12C26A5AD00814448 /* TableDetailViewRepresentable.swift */; };
+		5F02B2D52C26AA4900814448 /* SearchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F02B2D42C26AA4900814448 /* SearchStatus.swift */; };
+		5F02B2D72C26AA8400814448 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F02B2D62C26AA8400814448 /* UITableView + Extension.swift */; };
+		5F02B2DB2C26B2B100814448 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F02B2DA2C26B2B100814448 /* ImageCacheService.swift */; };
 		5F3C63EB2C1EF64400177CAE /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63EA2C1EF64400177CAE /* Then.swift */; };
 		5F3C63ED2C1EF6C800177CAE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63EC2C1EF6C800177CAE /* SearchView.swift */; };
 		5F3C63EF2C1EF6D100177CAE /* SearchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63EE2C1EF6D100177CAE /* SearchDetailView.swift */; };
@@ -16,7 +23,7 @@
 		5F3C63F72C1EF8AF00177CAE /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63F62C1EF8AF00177CAE /* SearchDetailViewModel.swift */; };
 		5F3C63F92C1EFAB500177CAE /* TableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63F82C1EFAB500177CAE /* TableViewRepresentable.swift */; };
 		5F3C63FC2C1F010A00177CAE /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63FB2C1F010A00177CAE /* SearchTextField.swift */; };
-		5F3C63FF2C1F02A700177CAE /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63FE2C1F02A700177CAE /* SearchItem.swift */; };
+		5F3C63FF2C1F02A700177CAE /* BookSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C63FE2C1F02A700177CAE /* BookSearchItem.swift */; };
 		5F3C64032C1F057700177CAE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C64022C1F057700177CAE /* NetworkService.swift */; };
 		5F3C64052C1F0D9800177CAE /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C64042C1F0D9800177CAE /* SearchViewCell.swift */; };
 		5F6C75F32C171CA7005B7ADC /* SWIFTTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C75F22C171CA7005B7ADC /* SWIFTTApp.swift */; };
@@ -45,6 +52,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F02B2CD2C26969800814448 /* BookSearchDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchDetailItem.swift; sourceTree = "<group>"; };
+		5F02B2CF2C269F6F00814448 /* SearchDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewCell.swift; sourceTree = "<group>"; };
+		5F02B2D12C26A5AD00814448 /* TableDetailViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDetailViewRepresentable.swift; sourceTree = "<group>"; };
+		5F02B2D42C26AA4900814448 /* SearchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStatus.swift; sourceTree = "<group>"; };
+		5F02B2D62C26AA8400814448 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
+		5F02B2DA2C26B2B100814448 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		5F3C63EA2C1EF64400177CAE /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		5F3C63EC2C1EF6C800177CAE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5F3C63EE2C1EF6D100177CAE /* SearchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailView.swift; sourceTree = "<group>"; };
@@ -54,7 +67,7 @@
 		5F3C63F62C1EF8AF00177CAE /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		5F3C63F82C1EFAB500177CAE /* TableViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRepresentable.swift; sourceTree = "<group>"; };
 		5F3C63FB2C1F010A00177CAE /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
-		5F3C63FE2C1F02A700177CAE /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
+		5F3C63FE2C1F02A700177CAE /* BookSearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchItem.swift; sourceTree = "<group>"; };
 		5F3C64022C1F057700177CAE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5F3C64042C1F0D9800177CAE /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		5F6C75EF2C171CA7005B7ADC /* SWIFTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWIFTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F02B2CC2C26825000814448 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F02B2D32C26AA3D00814448 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5F02B2D42C26AA4900814448 /* SearchStatus.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		5F3C63E32C1EF4AE00177CAE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,8 +137,10 @@
 		5F3C63E52C1EF4BF00177CAE /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5F02B2D32C26AA3D00814448 /* Enum */,
 				5F3C63FD2C1F029C00177CAE /* Model */,
 				5F3C64022C1F057700177CAE /* NetworkService.swift */,
+				5F02B2DA2C26B2B100814448 /* ImageCacheService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -125,7 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				5F3C63F82C1EFAB500177CAE /* TableViewRepresentable.swift */,
+				5F02B2D12C26A5AD00814448 /* TableDetailViewRepresentable.swift */,
 				5F3C64042C1F0D9800177CAE /* SearchViewCell.swift */,
+				5F02B2CF2C269F6F00814448 /* SearchDetailViewCell.swift */,
 			);
 			path = Wrapper;
 			sourceTree = "<group>";
@@ -134,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3C63F22C1EF7BD00177CAE /* Date + Extension.swift */,
+				5F02B2D62C26AA8400814448 /* UITableView + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -158,7 +185,8 @@
 		5F3C63FD2C1F029C00177CAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F3C63FE2C1F02A700177CAE /* SearchItem.swift */,
+				5F3C63FE2C1F02A700177CAE /* BookSearchItem.swift */,
+				5F02B2CD2C26969800814448 /* BookSearchDetailItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -240,6 +268,9 @@
 			dependencies = (
 			);
 			name = SWIFTT;
+			packageProductDependencies = (
+				5F02B2CB2C26825000814448 /* SnapKit */,
+			);
 			productName = SWIFTT;
 			productReference = 5F6C75EF2C171CA7005B7ADC /* SWIFTT.app */;
 			productType = "com.apple.product-type.application";
@@ -312,6 +343,9 @@
 				Base,
 			);
 			mainGroup = 5F6C75E62C171CA7005B7ADC;
+			packageReferences = (
+				5F02B2CA2C26825000814448 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 5F6C75F02C171CA7005B7ADC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,15 +388,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F3C63FF2C1F02A700177CAE /* SearchItem.swift in Sources */,
+				5F02B2CE2C26969800814448 /* BookSearchDetailItem.swift in Sources */,
+				5F02B2D72C26AA8400814448 /* UITableView + Extension.swift in Sources */,
+				5F3C63FF2C1F02A700177CAE /* BookSearchItem.swift in Sources */,
 				5F3C63ED2C1EF6C800177CAE /* SearchView.swift in Sources */,
 				5F3C64052C1F0D9800177CAE /* SearchViewCell.swift in Sources */,
 				5F3C63FC2C1F010A00177CAE /* SearchTextField.swift in Sources */,
+				5F02B2D52C26AA4900814448 /* SearchStatus.swift in Sources */,
 				5F3C63F12C1EF78E00177CAE /* Logger.swift in Sources */,
 				5F3C63F92C1EFAB500177CAE /* TableViewRepresentable.swift in Sources */,
 				5F3C63F52C1EF8A400177CAE /* SearchViewModel.swift in Sources */,
+				5F02B2D02C269F6F00814448 /* SearchDetailViewCell.swift in Sources */,
 				5F3C63F72C1EF8AF00177CAE /* SearchDetailViewModel.swift in Sources */,
 				5F3C63EB2C1EF64400177CAE /* Then.swift in Sources */,
+				5F02B2DB2C26B2B100814448 /* ImageCacheService.swift in Sources */,
+				5F02B2D22C26A5AD00814448 /* TableDetailViewRepresentable.swift in Sources */,
 				5F6C75F32C171CA7005B7ADC /* SWIFTTApp.swift in Sources */,
 				5F3C63EF2C1EF6D100177CAE /* SearchDetailView.swift in Sources */,
 				5F3C64032C1F057700177CAE /* NetworkService.swift in Sources */,
@@ -696,6 +736,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5F02B2CA2C26825000814448 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5F02B2CB2C26825000814448 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F02B2CA2C26825000814448 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5F6C75E72C171CA7005B7ADC /* Project object */;
 }

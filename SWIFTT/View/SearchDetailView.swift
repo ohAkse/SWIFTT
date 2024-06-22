@@ -9,22 +9,17 @@ import SwiftUI
 
 struct SearchDetailView: View {
     
-    @StateObject  var searchDetailViewModel: SearchDetailViewModel
+    @ObservedObject var searchDetailViewModel: SearchDetailViewModel
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text(searchDetailViewModel.detailedSearchItem!.title)
+            if searchDetailViewModel.searchStatus == .success {
+                if let _ = searchDetailViewModel.searchDetailItem {
+                    TableDetailViewRepresentable(bookSearchItem: $searchDetailViewModel.searchDetailItem)
+                }
+            }
         }
         .padding()
     }
 }
 
-struct SearchDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let dummyItem = SearchItem(title: "Dummy Title")
-        let viewModel = SearchDetailViewModel(detailedSearchItem: dummyItem)
-        return SearchDetailView(searchDetailViewModel: viewModel)
-    }
-}
+

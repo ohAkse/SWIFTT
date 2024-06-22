@@ -17,7 +17,7 @@ enum LogLevel {
 struct Logger {
     private static let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "SWIFTT App")
     
-    static func writeLog(_ level: LogLevel, message: String, isNeededStackTraceInfo : Bool = false, line : Int = #line, fileName : String = #file, caller: String = #function) {
+    static func writeLog(_ level: LogLevel, message: Any, isNeededStackTraceInfo : Bool = false, line : Int = #line, fileName : String = #file, caller: String = #function) {
         let logType: OSLogType
         var logMessage = ""
         var emoji = ""
@@ -55,7 +55,7 @@ struct Logger {
         os_log("%@", log: log, type: logType, logMessage)
     }
 
-    static func fatalErrorMessage(_ message: String, fileName: String = #file, line: Int = #line, caller: String = #function) {
+    static func fatalErrorMessage(_ message: Any, fileName: String = #file, line: Int = #line, caller: String = #function) {
         #if DEBUG
         let emoji = "❕"
         let fatalLog = "[\(Date().getCurrentTime()) - App][Func : \(caller)] : \(emoji) : \(message) -> \(fileName.split(separator: "/").last!) :\(line)\r\n"
