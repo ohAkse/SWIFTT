@@ -10,78 +10,65 @@ import UIKit
 class SearchDetailViewCell: UITableViewCell {
     
     private let bookImageView = UIImageView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
     }
     
     private let titleLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.boldSystemFont(ofSize: 16)
         $0.numberOfLines = 0
     }
     
     private let subtitleLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .gray
         $0.numberOfLines = 0
     }
     
     private let authorsLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.numberOfLines = 0
     }
     
     private let publisherLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .gray
     }
     
     private let languageLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .gray
     }
     
     private let isbnLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .gray
     }
     
     private let pagesLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
     }
     
     private let yearLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
     }
     
     private let ratingLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .systemYellow
     }
     
     private let descLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.numberOfLines = 0
     }
     
     private let priceLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .systemGreen
     }
     
     private let urlLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .blue
         $0.numberOfLines = 0
@@ -100,13 +87,12 @@ class SearchDetailViewCell: UITableViewCell {
         let labelsStackView = UIStackView(arrangedSubviews: [
             titleLabel, subtitleLabel, authorsLabel, publisherLabel,
             languageLabel, isbnLabel, pagesLabel, yearLabel, ratingLabel,
-            descLabel, priceLabel, urlLabel
-        ])
-        labelsStackView.axis = .vertical
-        labelsStackView.spacing = 8
+            descLabel, priceLabel, urlLabel]).then {
+            $0.axis = .vertical
+            $0.spacing = 8}
+
         
-        contentView.addSubview(bookImageView)
-        contentView.addSubview(labelsStackView)
+        [bookImageView, labelsStackView].forEach { contentView.addSubview($0) }
         
         bookImageView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().offset(16)
@@ -135,15 +121,10 @@ class SearchDetailViewCell: UITableViewCell {
         descLabel.text = book.desc
         priceLabel.text = "Price: \(book.price)"
         urlLabel.text = book.url
+  
         
-        if let url = URL(string: book.image) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, error == nil {
-                    DispatchQueue.main.async {
-                        self.bookImageView.image = UIImage(data: data)
-                    }
-                }
-            }.resume()
+        if let cachedImage = ImageCacheService.shared.getCachedImage(for: book.image) {
+            bookImageView.image = cachedImage
         }
     }
 }

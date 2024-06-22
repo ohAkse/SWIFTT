@@ -16,6 +16,14 @@ extension Then where Self: AnyObject {
     }
 }
 
+extension Then where Self: Any {
+    func with(_ block: (inout Self) -> Void) -> Self {
+        var copy = self
+        block(&copy)
+        return copy
+    }
+}
+
 extension NSObject: Then {}
 extension SearchDetailViewModel: Then {}
 extension URLComponents: Then {}

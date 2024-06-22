@@ -11,6 +11,7 @@ struct SearchTextField: View {
     @Binding var text: String
     var onCommit: () -> Void
     @State private var isNeededCommit = false
+    @State private var showAlert = false
 
     var body: some View {
         HStack {
@@ -24,7 +25,9 @@ struct SearchTextField: View {
                 }
 
             Button(action: {
-                if isNeededCommit {
+                if text.isEmpty {
+                    showAlert = true
+                } else if isNeededCommit {
                     onCommit()
                     isNeededCommit = false
                 }
@@ -39,6 +42,9 @@ struct SearchTextField: View {
                 .stroke(Color.gray, lineWidth: 1)
         )
         .padding()
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("알림"), message: Text("책 이름을 입력해주세요."), dismissButton: .default(Text("확인")))
+        }
     }
 }
 
@@ -50,7 +56,6 @@ struct ContentView: View {
             SearchTextField(text: $searchText, onCommit: {
                 print("Search commit with text: \(searchText)")
             })
-            // 다른 뷰들...
         }
     }
 }

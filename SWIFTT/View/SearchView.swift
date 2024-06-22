@@ -27,7 +27,7 @@ struct SearchView: View {
                             bookSearchItem: $searchViewModel.searchItem,
                             selectedItem: $selectedItem,
                             isNeededReload: $searchViewModel.isNeededReload,
-                            isNextButtonTapped: $isNextButtonTapped,
+                            isTappedCell: $isNextButtonTapped,
                             onScrolledToBottom: {
                                 searchViewModel.loadNextPage()
                             }
@@ -44,7 +44,7 @@ struct SearchView: View {
             .padding()
             .navigationDestination(isPresented: $isNextButtonTapped) {
                 if let item = selectedItem {
-                    let searchDetailVM = SearchDetailViewModel(networkService: NetworkService(imageService: ImageCacheService())).then {
+                    let searchDetailVM = SearchDetailViewModel(networkService: NetworkService()).then {
                         $0.setQueryParam(isbn13: item.isbn13)
                         $0.searchDetailInfo()
                     }

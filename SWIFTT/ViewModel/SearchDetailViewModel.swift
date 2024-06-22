@@ -18,9 +18,9 @@ import Combine
     
     private var isbn13: String = ""
     private var cancellables = Set<AnyCancellable>()
-    private var networkService: any NetworkFetchable
+    private var networkService:  NetworkFetchable
     
-    init(networkService: any NetworkFetchable) {
+    init(networkService:  NetworkFetchable) {
         self.networkService = networkService
     }
     
@@ -29,7 +29,13 @@ import Combine
     }
     
     func searchDetailInfo() {
-        networkService.fetchDetailItem(isbn: isbn13)
+        let components = URLComponents().with {
+            $0.scheme = "https"
+            $0.host = "api.itbook.store"
+            $0.path = "/1.0/books/\(isbn13)"
+        }
+        
+        networkService.fetchItem(URLComp: components)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .map { $0 }
@@ -45,8 +51,9 @@ import Combine
                 }
             } receiveValue: { [weak self] searchDetailItem in
                 guard let self = self else {return}
-                self.searchDetailItem = searchDetailItem
+                self.searchDetailItem = searchDetailItem                
             }
             .store(in: &cancellables)
+    
     }
 }

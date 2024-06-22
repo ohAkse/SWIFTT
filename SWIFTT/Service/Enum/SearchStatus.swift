@@ -9,7 +9,6 @@ import Foundation
 
 enum SearchStatus {
     case idle
-    case searching
     case success
     case fail
 }

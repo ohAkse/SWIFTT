@@ -21,19 +21,18 @@ import Combine
     
     private var isLoadingPage = false
     private var cancellables = Set<AnyCancellable>()
-    private var networkService: any NetworkFetchable
+    private var networkService:  NetworkFetchable
     
-    init(networkService: any NetworkFetchable) {
+    init(networkService:  NetworkFetchable) {
         self.networkService = networkService
     }
     
     func onTappedSearchButton() {
-        if let _ = searchItem {
-            searchItem = nil
-            pageNumber = 1
-        }
+        searchItem = nil
+        pageNumber = 1
         searchBooks()
     }
+    
     func loadNextPage() {
         guard !isLoadingPage else { return }
         isLoadingPage = true
@@ -42,30 +41,38 @@ import Combine
     }
     
     private func searchBooks() {
-        networkService.fetchItem(query: searchText, page: pageNumber)
-            .subscribe(on: DispatchQueue.global())
+        guard !searchText.isEmpty else { return }
+        
+        let components = URLComponents().with {
+            $0.scheme = "https"
+            $0.host = "api.itbook.store"
+            $0.path = "/1.0/search/\(searchText)/\(pageNumber)"
+        }
+        
+        networkService.fetchItem(URLComp: components)
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
-            .map { $0 }
             .decode(type: BookSearchItem.self, decoder: JSONDecoder())
             .sink { [weak self] completion in
-                guard let self = self else {return}
+                guard let self = self else { return }
                 switch completion {
                 case .failure(let error):
-                    searchStatus = .fail
+                    self.searchStatus = .fail
                     Logger.writeLog(.error, message: error.localizedDescription)
                 case .finished:
-                    searchStatus = .success
-                    isLoadingPage = false
+                    self.searchStatus = .success
+                    self.isLoadingPage = false
                 }
-            } receiveValue: { [weak self]  queryItem in
-                guard let self = self else {return}
-                if pageNumber == 1 {
-                   searchItem = queryItem
+            } receiveValue: { [weak self] queryItem in
+                guard let self = self else { return }
+                if self.pageNumber == 1 {
+                    self.searchItem = queryItem
                 } else {
-                   searchItem?.books.append(contentsOf: queryItem.books)
+                    self.searchItem?.books.append(contentsOf: queryItem.books)
                 }
-                isNeededReload = !queryItem.books.isEmpty
+                self.isNeededReload = !queryItem.books.isEmpty
             }
             .store(in: &cancellables)
     }
 }
+

@@ -33,6 +33,8 @@ class SearchViewCell: UITableViewCell {
         $0.clipsToBounds = true
     }
     
+    private var currentImageURL: URL?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
@@ -40,6 +42,13 @@ class SearchViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookImageView.image = nil
+        currentImageURL = nil
+        
     }
     
     private func configUI() {
@@ -52,7 +61,7 @@ class SearchViewCell: UITableViewCell {
             $0.height.equalTo(70)
         }
         
-        titleLabel.snp.makeConstraints { 
+        titleLabel.snp.makeConstraints {
             $0.leading.equalTo(bookImageView.snp.trailing).offset(16)
             $0.trailing.equalTo(contentView).offset(-16)
             $0.top.equalTo(contentView).offset(8)
@@ -71,20 +80,41 @@ class SearchViewCell: UITableViewCell {
             $0.bottom.equalTo(contentView).offset(-8)
         }
     }
-    
+  
     func configItem(with book: Book) {
         titleLabel.text = book.title
         subtitleLabel.text = book.subtitle
         priceLabel.text = book.price
         
-        if let url = URL(string: book.image) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, error == nil {
-                    DispatchQueue.main.async {
-                        self.bookImageView.image = UIImage(data: data)
+        guard let url = URL(string: book.image) else {
+            bookImageView.image = nil
+            return
+        }
+        
+        currentImageURL = url
+        
+        if let cachedImage = ImageCacheService.shared.getCachedImage(for: url.absoluteString) {
+            bookImageView.image = cachedImage
+        } else {
+            Task {
+                await loadImage(from: url)
+            }
+        }
+    }
+    
+    private func loadImage(from url: URL) async {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let image = UIImage(data: data) {
+                ImageCacheService.shared.cacheImage(image, for: url.absoluteString)
+                DispatchQueue.main.async {
+                    if self.currentImageURL == url {
+                        self.bookImageView.image = image
                     }
                 }
-            }.resume()
+            }
+        } catch {
+            Logger.writeLog(.error, message: "image fetch failed")
         }
     }
 }

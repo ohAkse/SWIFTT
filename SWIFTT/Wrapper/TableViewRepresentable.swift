@@ -12,7 +12,7 @@ struct TableViewRepresentable: UIViewRepresentable {
     @Binding var bookSearchItem: BookSearchItem?
     @Binding var selectedItem: Book?
     @Binding var isNeededReload: Bool
-    @Binding var isNextButtonTapped: Bool
+    @Binding var isTappedCell: Bool
     
     var onScrolledToBottom: (() -> Void)?
 
@@ -23,7 +23,6 @@ struct TableViewRepresentable: UIViewRepresentable {
         return tableView
     }
     
-    //MARK: 왜 GCD main에서 업데이트를 해줘야만 하는걸까..
     func updateUIView(_ uiView: UITableView, context: Context) {
         if isNeededReload && bookSearchItem != nil{
             DispatchQueue.main.async {
@@ -60,7 +59,7 @@ struct TableViewRepresentable: UIViewRepresentable {
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             parent.selectedItem = parent.bookSearchItem!.books[indexPath.row]
-            parent.isNextButtonTapped = true
+            parent.isTappedCell = true
             tableView.deselectRow(at: indexPath, animated: true)
         }
 

@@ -11,7 +11,7 @@ import SwiftUI
 struct SWIFTTApp: App {
     var body: some Scene {
         WindowGroup {
-            SearchView(searchViewModel: SearchViewModel(networkService: NetworkService(imageService: ImageCacheService())))
+            SearchView(searchViewModel: SearchViewModel(networkService: NetworkService()))
         }
     }
 }

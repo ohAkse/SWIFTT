@@ -13,9 +13,7 @@ struct TableDetailViewRepresentable: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITableView {
         let tableView = UITableView().then {
-            $0.dataSource = context.coordinator
-            $0.delegate = context.coordinator
-            $0.register(SearchDetailViewCell.self, forCellReuseIdentifier: SearchDetailViewCell.identifier.self)
+            $0.configure(dataSource: context.coordinator, delegate: context.coordinator, cellType: SearchDetailViewCell.self)
         }
         return tableView
     }
