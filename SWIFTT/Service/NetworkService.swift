@@ -20,11 +20,30 @@ class NetworkService: NetworkFetchable {
         }
         
         return URLSession.shared.dataTaskPublisher(for: url)
-            .map { data, _ in
-                return data
-            }
-            .mapError { $0 as URLError }
-            .eraseToAnyPublisher()
+              .tryMap { data, response in
+                  guard let httpResponse = response as? HTTPURLResponse else {
+                      throw URLError(.badServerResponse)
+                  }
+                  
+                  switch httpResponse.statusCode {
+                  case 200:
+                      return data
+                  case 401:
+                      throw URLError(.userAuthenticationRequired)
+                  case 403:
+                      throw URLError(.noPermissionsToReadFile)
+                  case 404:
+                      throw URLError(.fileDoesNotExist)
+                  case 500:
+                      throw URLError(.cannotConnectToHost)
+                  case 504:
+                      throw URLError(.timedOut)
+                  default:
+                      throw URLError(.unknown)
+                  }
+              }
+              .mapError { $0 as? URLError ?? URLError(.unknown) }
+              .eraseToAnyPublisher()
     }
 }
 

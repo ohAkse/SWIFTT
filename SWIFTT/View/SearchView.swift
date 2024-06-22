@@ -38,7 +38,6 @@ struct SearchView: View {
                         .foregroundColor(.red)
                         .padding()
                 }
-
                 Spacer()
             }
             .padding()

@@ -21,9 +21,9 @@ import Combine
     
     private var isLoadingPage = false
     private var cancellables = Set<AnyCancellable>()
-    private var networkService:  NetworkFetchable
+    private var networkService: any NetworkFetchable
     
-    init(networkService:  NetworkFetchable) {
+    init(networkService:  any NetworkFetchable) {
         self.networkService = networkService
     }
     

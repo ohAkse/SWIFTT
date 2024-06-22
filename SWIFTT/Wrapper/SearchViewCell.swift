@@ -11,24 +11,20 @@ import SnapKit
 class SearchViewCell: UITableViewCell {
     
     private var titleLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.boldSystemFont(ofSize: 16)
     }
     
     private var subtitleLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .gray
     }
     
     private var priceLabel = UILabel().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .blue
     }
     
     private var bookImageView = UIImageView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
     }
@@ -90,13 +86,11 @@ class SearchViewCell: UITableViewCell {
             bookImageView.image = nil
             return
         }
-        
-        currentImageURL = url
-        
         if let cachedImage = ImageCacheService.shared.getCachedImage(for: url.absoluteString) {
             bookImageView.image = cachedImage
         } else {
             Task {
+                currentImageURL = url
                 await loadImage(from: url)
             }
         }
