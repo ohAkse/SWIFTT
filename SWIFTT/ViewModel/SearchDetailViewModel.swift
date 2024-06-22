@@ -18,9 +18,9 @@ import Combine
     
     private var isbn13: String = ""
     private var cancellables = Set<AnyCancellable>()
-    private var networkService:  NetworkFetchable
+    private var networkService: NetworkFetchable
     
-    init(networkService:  NetworkFetchable) {
+    init(networkService: NetworkFetchable) {
         self.networkService = networkService
     }
     
@@ -29,31 +29,39 @@ import Combine
     }
     
     func searchDetailInfo() {
-        let components = URLComponents().with {
-            $0.scheme = "https"
-            $0.host = "api.itbook.store"
-            $0.path = "/1.0/books/\(isbn13)"
-        }
+        let components = makeURLComponents()
         
         networkService.fetchItem(URLComp: components)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
-            .map { $0 }
             .decode(type: BookSearchDetailItem.self, decoder: JSONDecoder())
             .sink { [weak self] completion in
-                guard let self = self else {return}
-                switch completion {
-                case .failure(let error):
-                    Logger.writeLog(.error, message: error.localizedDescription)
-                    self.searchStatus = .fail
-                case .finished:
-                    self.searchStatus = .success
-                }
+                self?.handleCompletion(completion)
             } receiveValue: { [weak self] searchDetailItem in
-                guard let self = self else {return}
-                self.searchDetailItem = searchDetailItem                
+                self?.handleReceiveValue(searchDetailItem)
             }
             .store(in: &cancellables)
+    }
     
+    private func makeURLComponents() -> URLComponents {
+        return URLComponents().with {
+            $0.scheme = "https"
+            $0.host = "api.itbook.store"
+            $0.path = "/1.0/books/\(isbn13)"
+        }
+    }
+    
+    private func handleCompletion(_ completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .failure(let error):
+            Logger.writeLog(.error, message: error.localizedDescription)
+            searchStatus = .fail
+        case .finished:
+            searchStatus = .success
+        }
+    }
+    
+    private func handleReceiveValue(_ searchDetailItem: BookSearchDetailItem) {
+        self.searchDetailItem = searchDetailItem
     }
 }

@@ -24,7 +24,6 @@ class NetworkService: NetworkFetchable {
                   guard let httpResponse = response as? HTTPURLResponse else {
                       throw URLError(.badServerResponse)
                   }
-                  
                   switch httpResponse.statusCode {
                   case 200:
                       return data
