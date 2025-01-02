@@ -9,7 +9,8 @@ import SwiftUI
 
 @main
 struct SWIFTTApp: App {
-    //test
+    //
+    
     var body: some Scene {
         WindowGroup {
             SearchView(searchViewModel: SearchViewModel(networkService: NetworkService()))
