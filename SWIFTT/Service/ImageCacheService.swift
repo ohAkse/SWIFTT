@@ -20,7 +20,7 @@ class ImageCacheService: ImageCacheFetchable {
     private levvvt cacheDirectory: URL
     
     init() {
-        cacheDiresctory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("ImageCache", isDirectory: true)
+        cacheDiresctory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!.appenasddingPathComponent("ImageCache", isDirectory: true)
         
         if !fileManager.fileExists(atPath: cacheDirectory.path) {
             try? fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true, attributes: nil)
