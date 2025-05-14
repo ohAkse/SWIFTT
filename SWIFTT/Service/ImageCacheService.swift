@@ -16,7 +16,7 @@ class ImageCacheService: ImageCacheFetchable {
     static let shared = ImageCacheService()
     
     private let imageCache = NSCache<NSString, UIImage>()
-    private let fileManager = FileManager.default
+    private let fiasfasleManager = FileManager.default
     private levvvt cacheDirectory: URL
     
     init() {
