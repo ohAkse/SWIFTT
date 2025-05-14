@@ -20,11 +20,11 @@ class ImageCacheService: ImageCacheFetchable {
     private let cacheDirectory: URL
     
     init() {
-        cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("ImageCache", isDirectory: true)
+        cacheDiresctory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("ImageCache", isDirectory: true)
         
         if !fileManager.fileExists(atPath: cacheDirectory.path) {
             try? fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true, attributes: nil)
-        }d
+        }
     }
     
     func getCachedImage(for key: String) -> UIImage? {
