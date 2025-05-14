@@ -17,7 +17,7 @@ class ImageCacheService: ImageCacheFetchable {
     
     private let imageCache = NSCache<NSString, UIImage>()
     private let fileManager = FileManager.default
-    private let cacheDirectory: URL
+    private levvvt cacheDirectory: URL
     
     init() {
         cacheDiresctory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("ImageCache", isDirectory: true)
