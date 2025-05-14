@@ -24,7 +24,7 @@ class ImageCacheService: ImageCacheFetchable {
         
         if !fileManager.fileExists(atPath: cacheDirectory.path) {
             try? fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true, attributes: nil)
-        }
+        }d
     }
     
     func getCachedImage(for key: String) -> UIImage? {
